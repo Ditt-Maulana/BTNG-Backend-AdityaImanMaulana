@@ -1,73 +1,117 @@
-# Nusantara Motors — Laravel 12 RESTful API
+🚗 Nusantara Motors REST API
 
-Backend API showroom mobil untuk tugas akhir BTNG. Project menggunakan Laravel 12, PHP 8.2+, MySQL, Eloquent ORM, Form Request validation, API Resource, seeder 12 mobil, dan Scramble untuk dokumentasi interaktif.
+REST API untuk mengelola data mobil pada sistem showroom Nusantara Motors, dibangun menggunakan Laravel 12 dan dideploy menggunakan Clever Cloud.
 
-## Kebutuhan
-- PHP 8.2+ dengan ekstensi `pdo_mysql`, `mbstring`, `openssl`, `tokenizer`, `xml`, `ctype`, `json`, `fileinfo`
-- Composer 2
-- MySQL 8+ (Laragon/XAMPP dapat digunakan)
+<p align="center">
+  <a href="https://app-fbab5e92-fb8e-4f4a-8010-233fa7a39791.cleverapps.io">
+    <img src="https://img.shields.io/badge/Live%20API-Clever%20Cloud-blue?style=for-the-badge" alt="Live API"/>
+  </a>
+  <a href="https://app-fbab5e92-fb8e-4f4a-8010-233fa7a39791.cleverapps.io/docs/api">
+    <img src="https://img.shields.io/badge/API%20Docs-OpenAPI-green?style=for-the-badge" alt="API Documentation"/>
+  </a>
+</p>🌐 Live Deployment
 
-## Menjalankan di komputer lokal
-1. Ekstrak folder project ke direktori kerja.
-2. Buka terminal di folder `nusantara-motors-laravel`.
-3. Jalankan `composer install`.
-4. Salin `.env.example` menjadi `.env`.
-   - Windows CMD: `copy .env.example .env`
-   - PowerShell: `Copy-Item .env.example .env`
-   - macOS/Linux: `cp .env.example .env`
-5. Buat database MySQL bernama `nusantara_motors` melalui phpMyAdmin atau MySQL.
-6. Pastikan `DB_DATABASE`, `DB_USERNAME`, dan `DB_PASSWORD` di `.env` cocok dengan MySQL lokal.
-7. Jalankan `php artisan key:generate`.
-8. Jalankan `php artisan migrate --seed`.
-9. Jalankan `php artisan serve`.
-10. Buka `http://127.0.0.1:8000` dan dokumentasi API di `http://127.0.0.1:8000/docs/api`.
+- Live API: https://app-fbab5e92-fb8e-4f4a-8010-233fa7a39791.cleverapps.io
+- API Documentation: https://app-fbab5e92-fb8e-4f4a-8010-233fa7a39791.cleverapps.io/docs/api
+- GitHub Repository: https://github.com/Ditt-Maulana/BTNG-Backend-AdityaImanMaulana
 
-> Jangan upload `.env` berisi password ke GitHub. Hanya commit `.env.example`.
+✨ Features
 
-## Endpoint
-| Method | Endpoint | Kegunaan |
-|---|---|---|
-| GET | `/api/mobil` | Daftar mobil (pagination) |
-| GET | `/api/mobil/{id}` | Detail mobil |
-| POST | `/api/mobil` | Tambah mobil |
-| PUT/PATCH | `/api/mobil/{id}` | Ubah mobil |
-| DELETE | `/api/mobil/{id}` | Hapus mobil |
+- Menampilkan daftar mobil.
+- Menambahkan data mobil baru.
+- Menampilkan detail mobil.
+- Memperbarui data mobil.
+- Menghapus data mobil.
+- Dokumentasi endpoint API yang dapat diakses melalui browser.
 
-Filter daftar: `?q=toyota`, `?brand=Honda`, `?status=tersedia`, `?per_page=10` (maksimum 100).
+🛠️ Tech Stack
 
-## Contoh body POST/PATCH
-```json
-{
-  "nama": "Yaris Cross S HEV",
-  "brand": "Toyota",
-  "harga": 450000000,
-  "tahun": 2025,
-  "transmisi": "CVT",
-  "bahan_bakar": "Hybrid",
-  "status": "tersedia",
-  "foto": "https://example.com/mobil.jpg"
-}
-```
+- Framework: Laravel 12
+- Language: PHP
+- Architecture: RESTful API
+- API Documentation: OpenAPI
+- Deployment: Clever Cloud
+- Version Control: Git & GitHub
 
-Header request JSON: `Accept: application/json` dan untuk POST/PATCH `Content-Type: application/json`.
+📌 API Endpoints
 
-## Status response
-- `200`: data berhasil diambil/diubah/dihapus
-- `201`: data berhasil dibuat
-- `404`: mobil tidak ditemukan (route model binding Laravel)
-- `422`: validasi gagal, Laravel mengembalikan detail error dalam JSON
+Base URL:
 
-## Catatan Scramble
-Scramble ditambahkan melalui Composer (`dedoc/scramble`) dan secara default menyediakan dokumentasi API pada `/docs/api`. Setelah `composer install`, periksa URL tersebut. Jika versi package yang terpasang menggunakan konfigurasi berbeda, ikuti petunjuk resmi package Scramble.
+https://app-fbab5e92-fb8e-4f4a-8010-233fa7a39791.cleverapps.io
 
-## Deployment
-Deploy ke layanan PHP yang mendukung Laravel (misalnya Railway/Render dengan build PHP yang sesuai). Set environment variables di dashboard layanan: `APP_KEY`, `APP_ENV=production`, `APP_DEBUG=false`, `APP_URL`, `DB_CONNECTION=mysql`, `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`. Jalankan `php artisan migrate --force` setelah deploy. Jangan gunakan database lokal Laragon sebagai database cloud.
+Method| Endpoint| Description
+GET| "/api/mobil"| Mendapatkan daftar mobil
+POST| "/api/mobil"| Menambahkan mobil
+GET| "/api/mobil/{mobil}"| Mendapatkan detail mobil
+PUT| "/api/mobil/{mobil}"| Memperbarui data mobil
+DELETE| "/api/mobil/{mobil}"| Menghapus data mobil
 
-## Struktur utama
-- `app/Models/Mobil.php`
-- `app/Http/Controllers/Api/MobilController.php`
-- `app/Http/Requests/StoreMobilRequest.php` dan `UpdateMobilRequest.php`
-- `app/Http/Resources/MobilResource.php`
-- `database/migrations/*create_mobil_table.php`
-- `database/seeders/DatabaseSeeder.php`
-- `routes/api.php`
+«Buka dokumentasi API untuk melihat skema request, parameter, dan format respons setiap endpoint.»
+
+🚀 Getting Started
+
+Requirements
+
+- PHP sesuai versi yang didukung proyek
+- Composer
+- Database yang dikonfigurasi untuk aplikasi
+
+Installation
+
+1. Clone repository:
+   
+   git clone https://github.com/Ditt-Maulana/BTNG-Backend-AdityaImanMaulana.git
+
+2. Masuk ke folder proyek:
+   
+   cd BTNG-Backend-AdityaImanMaulana
+
+3. Install dependencies:
+   
+   composer install
+
+4. Salin konfigurasi environment:
+   
+   cp .env.example .env
+
+5. Generate application key:
+   
+   php artisan key:generate
+
+6. Sesuaikan konfigurasi database di file ".env".
+
+7. Jalankan migration jika migration tersedia dan database sudah dikonfigurasi:
+   
+   php artisan migrate
+
+8. Jalankan server lokal:
+   
+   php artisan serve
+
+Aplikasi lokal biasanya dapat diakses melalui "http://127.0.0.1:8000".
+
+🧪 API Testing
+
+Endpoint dapat diuji melalui dokumentasi API:
+
+"Buka Nusantara Motors API Documentation" (https://app-fbab5e92-fb8e-4f4a-8010-233fa7a39791.cleverapps.io/docs/api)
+
+Pilih endpoint, isi parameter atau request body sesuai skema yang tersedia, lalu kirim request untuk melihat respons server.
+
+Perhatian: Endpoint "DELETE" dapat menghapus data. Gunakan dengan hati-hati.
+
+📂 Project Purpose
+
+Proyek ini dibuat sebagai implementasi backend REST API untuk pengelolaan data mobil, mencakup operasi CRUD dan deployment aplikasi ke lingkungan cloud.
+
+👨‍💻 Author
+
+Aditya Iman Maulana
+
+GitHub: "@Ditt-Maulana" (https://github.com/Ditt-Maulana)
+
+---
+
+<p align="center">
+  Made with ❤️ using Laravel
+</p>
